@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FigLogo — O processo que a IA nunca vai substituir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f0f0f;
+    --ink-card:#1a1a1a;
+    --paper:#ffffff;
+    --paper-alt:#fafafa;
+    --paper-pink:#fdf0fa;
+    --accent:#d946a8;
+    --accent-deep:#b93a8e;
+    --body:#3a3a3a;
+    --muted:#6b6b6b;
+    --line:#e8e8e8;
+    --green:#16a34a;
+    --green-bg:#f0fdf4;
+    --red:#dc2626;
+    --red-bg:#fef2f2;
+    --white:#ffffff;
+    --radius:14px;
+    --shadow:0 6px 18px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    color:var(--body);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    line-height:1.15;
+    margin:0;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    font-weight:800;
+  }
+  .eyebrow{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  p{line-height:1.65; margin:0;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:680px; margin:0 auto; padding:0 24px;}
+  .wrap-wide{max-width:1040px; margin:0 auto; padding:0 24px;}
+  section{padding:72px 0;}
+  @media(max-width:720px){section{padding:52px 0;}}
+
+  /* top banner */
+  .banner{
+    background:linear-gradient(135deg,#ef2d2d,#a81d1d);
+    color:var(--white);
+    text-align:center;
+    padding:10px 16px;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.01em;
+  }
+
+  /* HERO */
+  .hero{
+    background:radial-gradient(900px 480px at 50% -12%, var(--paper-pink) 0%, var(--paper) 60%);
+    padding:56px 0 64px;
+  }
+  .hero-inner{max-width:640px; margin:0 auto; padding:0 24px; text-align:center;}
+  .hero__image{
+    width:220px; height:220px; object-fit:cover;
+    border-radius:50%;
+    margin:0 auto 24px;
+    border:4px solid var(--white);
+    box-shadow:0 10px 28px rgba(0,0,0,.1);
+  }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--paper-pink);
+    color:var(--accent);
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(28px,4.6vw,42px);
+  }
+  .hero h1 em{color:var(--accent); font-style:normal;}
+  .hero p.lead{
+    margin-top:18px;
+    font-size:17px;
+    color:var(--body);
+  }
+  .cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--accent);
+    color:var(--white);
+    font-weight:800;
+    font-size:15.5px;
+    padding:17px 28px;
+    border-radius:999px;
+    margin-top:26px;
+    box-shadow:0 14px 30px -12px rgba(217,70,168,.55);
+    transition:transform .15s ease;
+  }
+  .cta:hover{transform:translateY(-2px);}
+  .hero-proof{
+    margin-top:32px;
+    display:flex; justify-content:center; gap:18px; flex-wrap:wrap;
+  }
+  .hero-proof .stat{text-align:center;}
+  .hero-proof .stat strong{display:block; font-size:16px; font-weight:800; color:var(--ink);}
+  .hero-proof .stat span{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.03em;}
+  .hero-proof .div{width:1px; background:var(--line); align-self:stretch;}
+
+  .hero-path-note{
+    margin-top:28px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--paper-alt);
+    border:1px solid var(--line);
+    padding:12px 18px;
+    border-radius:14px;
+    font-size:13.5px;
+    color:var(--body);
+    text-align:left;
+  }
+  .hero-path-note .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 0 4px rgba(22,163,74,.15);
+    flex-shrink:0;
+  }
+
+  /* generic section headers */
+  .section-head{max-width:640px; margin:0 auto 40px; text-align:center;}
+  .section-head .eyebrow{color:var(--accent);}
+  .section-head h2{font-size:clamp(24px,3.2vw,34px); margin-top:12px;}
+  .section-head p{margin-top:14px; color:var(--muted); font-size:16px;}
+
+  /* PROBLEM */
+  .problem{background:var(--paper);}
+  .problem-grid{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start;}
+  @media(max-width:820px){.problem-grid{grid-template-columns:1fr;}}
+  .problem ul{list-style:none; padding:0; margin:20px 0 0; display:grid; gap:12px;}
+  .problem li{
+    display:flex; gap:10px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:14px 16px;
+    border-radius:var(--radius);
+    font-size:14.5px;
+    box-shadow:var(--shadow);
+  }
+  .problem li::before{content:"✕"; color:var(--red); font-weight:700; flex-shrink:0;}
+  .callout{
+    background:var(--ink);
+    color:var(--white);
+    border-radius:var(--radius);
+    padding:24px 26px;
+    font-size:16.5px;
+    line-height:1.55;
+    margin-top:24px;
+  }
+
+  /* REVERSAL */
+  .reversal{background:var(--paper-pink);}
+  .reversal .section-head h2{max-width:600px; margin:12px auto 0;}
+
+  /* COMPARISON */
+  .compare{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:40px;}
+  @media(max-width:720px){.compare{grid-template-columns:1fr;}}
+  .compare-card{
+    border-radius:var(--radius);
+    padding:24px;
+    border:1px solid var(--line);
+    background:var(--white);
+  }
+  .compare-card.bad{background:var(--red-bg); border-color:#f7d9d9;}
+  .compare-card.good{background:var(--green-bg); border-color:#c8ecd9;}
+  .compare-card .tag{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    font-size:11.5px; letter-spacing:.06em; text-transform:uppercase;
+    font-weight:700; color:var(--muted);
+  }
+  .compare-card ul{list-style:none; padding:0; margin:16px 0 0; display:grid; gap:10px; font-size:14.5px;}
+  .compare-card .value{
+    margin-top:18px; font-size:20px; font-weight:800;
+  }
+  .compare-card.bad .value{color:var(--red);}
+  .compare-card.good .value{color:var(--green);}
+
+  /* TRILHA (signature section) */
+  .trilha{background:var(--ink); color:var(--white); position:relative;}
+  .trilha .section-head p{color:#b8b0c2;}
+  .trilha .eyebrow{color:var(--accent);}
+  .trilha .section-head h2{color:var(--white);}
+
+  .path{
+    position:relative;
+    margin-top:52px;
+    padding-left:36px;
+  }
+  .path::before{
+    content:"";
+    position:absolute;
+    left:11px; top:6px; bottom:6px;
+    width:2px;
+    background:repeating-linear-gradient(to bottom, rgba(255,255,255,.25) 0 6px, transparent 6px 12px);
+  }
+  .step{
+    position:relative;
+    padding-bottom:40px;
+  }
+  .step:last-child{padding-bottom:0;}
+  .step-node{
+    position:absolute; left:-36px; top:0;
+    width:24px; height:24px;
+    border-radius:50%;
+    background:var(--accent);
+    border:3px solid var(--ink);
+    box-shadow:0 0 0 2px rgba(255,255,255,.3);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:800; color:var(--white);
+  }
+  .step-card{
+    background:var(--ink-card);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:var(--radius);
+    padding:20px 22px;
+  }
+  .step-card .eyebrow{color:#c98ab6; font-size:11.5px;}
+  .step-card h3{font-size:18px; margin-top:8px; color:var(--white);}
+  .step-card p{margin-top:8px; color:#c2b9cb; font-size:14.5px;}
+  .checkpoint{
+    margin-top:14px;
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(22,163,74,.14);
+    border:1px solid rgba(22,163,74,.35);
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:12.5px;
+    color:#7fe0ac;
+  }
+  .checkpoint .dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+
+  .trilha-note{
+    margin-top:40px;
+    text-align:center;
+    max-width:540px;
+    margin-left:auto; margin-right:auto;
+    font-size:14.5px;
+    color:#b8b0c2;
+  }
+
+  /* PERSONAS */
+  .personas{background:var(--paper);}
+  .persona-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:40px;}
+  @media(max-width:720px){.persona-grid{grid-template-columns:1fr;}}
+  .persona-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px;
+    background:var(--white);
+    box-shadow:var(--shadow);
+  }
+  .persona-card .eyebrow{color:var(--accent);}
+  .persona-card h3{font-size:19px; margin-top:10px;}
+  .persona-card p{margin-top:12px; color:var(--muted); font-size:14.5px;}
+
+  /* TESTIMONIALS */
+  .testi{background:var(--paper-pink);}
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px;}
+  @media(max-width:820px){.testi-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.testi-grid{grid-template-columns:1fr;}}
+  .testi-card{
+    background:var(--white);
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+  }
+  .testi-card img{width:100%; height:170px; object-fit:cover; background:#eee;}
+  .testi-card .tag{
+    display:inline-flex; margin:16px 0 0 16px;
+    background:var(--accent); color:var(--white);
+    font-size:10.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    padding:5px 12px; border-radius:999px;
+  }
+  .testi-card p{padding:10px 16px 16px; font-size:14px; color:var(--ink);}
+
+  /* LEARN CHIPS */
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:32px; justify-content:center;}
+  .chip{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:10px 16px;
+    border-radius:999px;
+    font-size:13.5px;
+  }
+
+  /* SEM/COM */
+  .semcom{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:40px;}
+  @media(max-width:720px){.semcom{grid-template-columns:1fr;}}
+  .semcom-card{border-radius:var(--radius); padding:24px;}
+  .semcom-card.no{background:var(--red-bg); border:1px solid #f7d9d9;}
+  .semcom-card.yes{background:var(--ink); color:var(--white);}
+  .semcom-card h3{font-size:15px; letter-spacing:.04em; font-weight:800;}
+  .semcom-card.no h3{color:var(--red);}
+  .semcom-card.yes h3{color:var(--accent);}
+  .semcom-card ul{list-style:none; padding:0; margin:18px 0 0; display:grid; gap:11px; font-size:14.5px;}
+
+  /* ZERO section */
+  .zero{background:var(--paper); text-align:center;}
+  .zero-list{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+    max-width:600px; margin:30px auto 0;
+    text-align:left;
+  }
+  @media(max-width:640px){.zero-list{grid-template-columns:1fr 1fr;}}
+  .zero-list div{font-size:14px; color:var(--muted);}
+  .zero-list div::before{content:"✕ "; color:var(--red);}
+  .zero-final{margin-top:26px; font-size:17px; font-weight:700; color:var(--ink);}
+
+  /* PRICING */
+  .pricing{background:var(--ink); color:var(--white);}
+  .price-box{
+    max-width:520px; margin:40px auto 0;
+    background:var(--ink-card);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:22px;
+    padding:34px;
+    text-align:center;
+  }
+  .price-box .old{color:#9a92a3; text-decoration:line-through; font-size:15px;}
+  .price-box .now{
+    font-size:48px; font-weight:800; margin-top:6px; color:var(--white);
+  }
+  .price-box .now sup{font-size:20px; vertical-align:top; top:4px; position:relative;}
+  .price-box .installment{color:#c2b9cb; margin-top:6px; font-size:14px;}
+  .price-box .cta{width:100%; justify-content:center; margin-top:22px;}
+  .guarantee-list{
+    list-style:none; padding:0; margin:24px 0 0; display:grid; gap:10px;
+    text-align:left; font-size:13.5px; color:#d6cfdc;
+  }
+  .guarantee-list li::before{content:"✓ "; color:var(--green); font-weight:700;}
+
+  /* ABOUT */
+  .about{background:var(--paper);}
+  .about-grid{display:grid; grid-template-columns:150px 1fr; gap:30px; align-items:center; max-width:660px; margin:0 auto;}
+  @media(max-width:560px){.about-grid{grid-template-columns:1fr; text-align:center;}}
+  .about img{border-radius:16px;}
+  .about h3{font-size:19px;}
+  .about p{margin-top:10px; color:var(--muted); font-size:14.5px;}
+
+  /* FAQ */
+  .faq{background:var(--paper-pink);}
+  .faq-item{
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+  }
+  .faq-item summary{
+    cursor:pointer; font-weight:700; font-size:15px; color:var(--ink);
+    list-style:none; display:flex; justify-content:space-between; align-items:center;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+"; font-size:20px; color:var(--accent); font-weight:400;}
+  .faq-item[open] summary::after{content:"–";}
+  .faq-item p{margin-top:10px; color:var(--muted); font-size:14.5px;}
+
+  /* FINAL CTA */
+  .final{
+    background:radial-gradient(900px 460px at 80% 0%, #2a1220 0%, var(--ink) 55%);
+    color:var(--white); text-align:center;
+  }
+  .final h2{font-size:clamp(22px,3.4vw,32px); max-width:580px; margin:0 auto; color:var(--white);}
+  .final p{margin-top:16px; color:#c2b9cb; max-width:500px; margin-left:auto; margin-right:auto;}
+  .final .cta{margin-top:24px;}
+
+  footer{
+    text-align:center; padding:32px 24px; font-size:13px; color:var(--muted); background:var(--paper);
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">🔥 Vitalício por <b>R$67</b> · Garantia de 7 dias 🔥</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <img class="hero__image" src="https://drive.google.com/thumbnail?id=1qPuipKO4zigenVf1afhS-YsHG8cYRMfK&sz=w900" alt="Lari Tedeschi, criadora do FigLogo">
+    <div class="eyebrow">✓ Curso verificado pelo Figma · +300 alunas</div>
+    <h1>Você viu a IA criar um logo em 10 segundos.<br>Agora aprenda o que ela <em>nunca</em> vai saber fazer sozinha.</h1>
+    <p class="lead">Briefing, conceito, direção criativa, refinamento e entrega profissional — numa trilha com ordem certa, passo a passo, sem ficar perdida no meio do caminho. Isso é processo. É o que separa um logo gerado de um logo construído.</p>
+    <a href="https://pay.kiwify.com.br/yHGdEBA" class="cta">Quero começar minha trilha por R$67 →</a>
+    <div class="hero-proof">
+      <div class="stat"><strong>Vitalício</strong><span>Acesso</span></div>
+      <div class="div"></div>
+      <div class="stat"><strong>7 dias</strong><span>Garantia</span></div>
+      <div class="div"></div>
+      <div class="stat"><strong>12x</strong><span>R$6,93</span></div>
+    </div>
+    <div class="hero-path-note">
+      <span class="dot"></span>
+      Sua trilha começa no Módulo 1 — sem adivinhação, sem travar sozinha na frente da tela em branco.
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap-wide">
+    <div class="problem-grid">
+      <div>
+        <div class="eyebrow" style="color:var(--accent)">O erro de leitura</div>
+        <h2 style="font-size:clamp(22px,3vw,30px); margin-top:12px;">Todo mundo está olhando para o lugar errado quando diz que a IA vai substituir designers.</h2>
+        <p style="margin-top:16px; color:var(--muted); font-size:15.5px;">Hoje qualquer cliente gera centenas de logotipos, paletas e estilos em poucos minutos. O problema é que ter muitas opções não significa saber qual delas representa a marca. É aí que o designer se torna indispensável: transformando possibilidades em decisões estratégicas.</p>
+        <div class="callout">O designer que vai ser substituído não é o que usa IA. <strong>É o que nunca aprendeu processo.</strong></div>
+      </div>
+      <div>
+        <div class="eyebrow" style="color:var(--muted)">É o designer que...</div>
+        <ul>
+          <li>Cria no improviso, testando ideias aleatórias até algo parecer bonito</li>
+          <li>Copia referências sem entender o porquê de cada decisão</li>
+          <li>Não sabe conduzir um briefing e espera o cliente dizer o que quer</li>
+          <li>Entrega arquivo solto por e-mail e torce pra o cliente gostar</li>
+          <li>Não consegue explicar por que fez o que fez</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVERSAL -->
+<section class="reversal">
+  <div class="wrap section-head">
+    <div class="eyebrow">A virada</div>
+    <h2>Quando você domina o processo, a IA vira a ferramenta mais poderosa do seu arsenal.</h2>
+    <p>Você sabe o que pedir pra ela. Sabe o que ajustar. Sabe o que jogar fora. E, principalmente: sabe entregar algo que nenhum prompt consegue gerar sozinho.</p>
+  </div>
+  <div class="wrap-wide">
+    <div class="compare">
+      <div class="compare-card bad">
+        <div class="tag">Resultado genérico de IA</div>
+        <ul>
+          <li>✕ Resultado que qualquer pessoa consegue gerar</li>
+          <li>✕ Sem conceito, sem direção, sem estratégia</li>
+          <li>✕ Cliente olha e pensa: "isso eu fazia sozinho"</li>
+        </ul>
+        <div class="value">Valor percebido: R$0</div>
+      </div>
+      <div class="compare-card good">
+        <div class="tag">Resultado estratégico</div>
+        <ul>
+          <li>✓ Intenção em cada decisão</li>
+          <li>✓ Briefing, conceito, direção criativa e refinamento</li>
+          <li>✓ Cliente entende o valor do trabalho</li>
+        </ul>
+        <div class="value">Valor percebido: R$800 a R$2.000+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRILHA — signature section -->
+<section class="trilha">
+  <div class="wrap section-head">
+    <div class="eyebrow">Sua trilha dentro do FigLogo</div>
+    <h2>Você nunca fica sem saber qual é o próximo passo.</h2>
+    <p>Cada módulo já vem na ordem certa. Você não precisa decidir sozinha o que estudar primeiro — a trilha te diz, e cada etapa fecha com um checkpoint prático, não só teoria.</p>
+  </div>
+  <div class="wrap">
+    <div class="path">
+
+      <div class="step">
+        <div class="step-node">01</div>
+        <div class="step-card">
+          <div class="eyebrow">Etapa 1</div>
+          <h3>Fundamentos que dão direção</h3>
+          <p>Conceito de marca e como analisar referência sem copiar — pra você parar de criar no feeling.</p>
+          <div class="checkpoint"><span class="dot"></span>Checkpoint: seu primeiro briefing definido</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-node">02</div>
+        <div class="step-card">
+          <div class="eyebrow">Etapa 2</div>
+          <h3>Processo criativo guiado</h3>
+          <p>Um roteiro claro pra sair da ideia solta e chegar num conceito com intenção, sem travar na tela em branco.</p>
+          <div class="checkpoint"><span class="dot"></span>Checkpoint: seu conceito de logo aprovado por você mesma</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-node">03</div>
+        <div class="step-card">
+          <div class="eyebrow">Etapa 3</div>
+          <h3>Construção no Figma, do zero</h3>
+          <p>Grids, vetores, tipografia e pen tool — direto na ferramenta gratuita mais usada pelo mercado.</p>
+          <div class="checkpoint"><span class="dot"></span>Checkpoint: seu primeiro logo construído</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-node">04</div>
+        <div class="step-card">
+          <div class="eyebrow">Etapa 4</div>
+          <h3>Refinamento com a IA a favor</h3>
+          <p>Espaçamento, kerning e ajustes finos — usando IA pra acelerar, sabendo exatamente o que pedir e o que corrigir.</p>
+          <div class="checkpoint"><span class="dot"></span>Checkpoint: seu logo pronto pra apresentar</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-node">05</div>
+        <div class="step-card">
+          <div class="eyebrow">Etapa 5</div>
+          <h3>Entrega que valoriza seu trabalho</h3>
+          <p>Mockup, exportação e apresentação — pro cliente enxergar o valor antes mesmo de ouvir o preço.</p>
+          <div class="checkpoint"><span class="dot"></span>Checkpoint: sua primeira entrega profissional</div>
+        </div>
+      </div>
+
+    </div>
+    <p class="trilha-note">Nenhuma IA substitui isso — porque não é sobre gerar uma imagem, é sobre saber por que cada decisão foi tomada. E você não caminha essa trilha sozinha: cada etapa já vem com o próximo passo definido.</p>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section class="personas">
+  <div class="wrap section-head">
+    <div class="eyebrow">Pra quem é</div>
+    <h2>A trilha se adapta a onde você está agora</h2>
+  </div>
+  <div class="wrap-wide">
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="eyebrow">Já trabalha com design</div>
+        <h3>Você não vai perder tempo com o básico que já sabe</h3>
+        <p>A trilha te leva direto pro que separa quem cobra R$200 de quem cobra R$2.000: processo, direção criativa e argumento pra defender o preço — inclusive com IA no fluxo.</p>
+      </div>
+      <div class="persona-card">
+        <div class="eyebrow">Tá começando do zero</div>
+        <h3>Você não precisa saber por onde começar</h3>
+        <p>Esse é o trabalho da trilha. Você só precisa seguir a ordem — e cada módulo fecha com uma entrega concreta que você pode olhar e dizer "eu fiz isso".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="wrap section-head">
+    <div class="eyebrow">Resultado de quem já andou a trilha</div>
+    <h2>O que aconteceu quando minhas alunas aplicaram o método</h2>
+  </div>
+  <div class="wrap-wide">
+    <div class="testi-grid">
+      <div class="testi-card">
+        <img src="https://framerusercontent.com/images/zXRTje0tnFe5INgP0lJgQYgD86A.png" alt="Depoimento Quesia">
+        <div class="tag">R$150 → R$1.000</div>
+        <p>A Quesia refinou seu olhar no design e passou a cobrar de R$150 para +R$1.000 por projeto.</p>
+      </div>
+      <div class="testi-card">
+        <img src="https://framerusercontent.com/images/cEOfkTulj5JxA9Arsq67KfACKtk.png" alt="Depoimento Julia">
+        <div class="tag">R$200 → R$2.000</div>
+        <p>A Julia entendeu o processo e passou de R$200 para R$2.000 por projeto de identidade visual.</p>
+      </div>
+      <div class="testi-card">
+        <img src="https://framerusercontent.com/images/SOxju70KbkgDFKUJok6V9cqT4.png" alt="Depoimento Bea">
+        <div class="tag">Do zero</div>
+        <p>A Bea aprendeu a metodologia começando do zero, sem nunca ter usado o Figma.</p>
+      </div>
+    </div>
+    <div class="chips">
+      <div class="chip">🧠 Conceitos importantes</div>
+      <div class="chip">✨ Processo criativo</div>
+      <div class="chip">🎨 Figma do zero ao avançado</div>
+      <div class="chip">💎 Criação prática de logos</div>
+      <div class="chip">📐 Sistema de refinamento</div>
+      <div class="chip">📦 Fechamento e entrega</div>
+      <div class="chip">🧪 Desafios práticos</div>
+      <div class="chip">🤝 Aulas extras + convidados</div>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://pay.kiwify.com.br/yHGdEBA" class="cta">Quero os mesmos resultados →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEM / COM -->
+<section class="problem">
+  <div class="wrap section-head">
+    <div class="eyebrow">O antes e o depois</div>
+    <h2>O que muda quando você tem uma trilha, não só teoria solta</h2>
+  </div>
+  <div class="wrap-wide">
+    <div class="semcom">
+      <div class="semcom-card no">
+        <h3>SEM FIGLOGO</h3>
+        <ul>
+          <li>✕ Se sentir insegura em cada criação</li>
+          <li>✕ Criar "no feeling" sem saber explicar suas decisões</li>
+          <li>✕ Ter medo de que a IA faça melhor que você</li>
+          <li>✕ Travar no meio de cada projeto sem saber o próximo passo</li>
+        </ul>
+      </div>
+      <div class="semcom-card yes">
+        <h3>COM FIGLOGO</h3>
+        <ul>
+          <li>✓ Saber exatamente como começar qualquer projeto</li>
+          <li>✓ Construir logos com direção e intenção</li>
+          <li>✓ Usar a IA como ferramenta, não como muleta</li>
+          <li>✓ Sempre saber qual é o próximo passo da trilha</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZERO -->
+<section class="zero">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--accent)">"Mas eu tô começando do zero. Isso é pra mim?"</div>
+    <h2 style="font-size:clamp(22px,3vw,30px); margin-top:14px;">O FigLogo foi criado pra quem ainda está aprendendo.</h2>
+    <p style="margin-top:14px; color:var(--muted);">Então você não precisa:</p>
+    <div class="zero-list">
+      <div>Dominar o Figma</div>
+      <div>Ter experiência profissional</div>
+      <div>Saber desenhar</div>
+      <div>Ter portfólio</div>
+      <div>Usar softwares caros</div>
+      <div>Ser extremamente criativa</div>
+    </div>
+    <div class="zero-final">Você só precisa seguir a trilha. O resto é construção.</div>
+  </div>
+</section>
+
+<!-- FIGMA LICENSE -->
+<section class="reversal">
+  <div class="wrap section-head">
+    <div class="eyebrow">Sem custo extra de ferramenta</div>
+    <h2>Aprenda no Figma Pro, sem pagar por uma licença.</h2>
+    <p>Nosso curso é verificado pelo Figma — você pode solicitar a licença educacional e acessar de graça as funcionalidades profissionais da plataforma mais usada pelo mercado.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="wrap" style="text-align:center;">
+    <div class="eyebrow" style="color:var(--accent);">Quanto custa continuar sem processo?</div>
+    <h2 style="font-size:clamp(20px,3vw,28px); margin-top:14px; max-width:540px; margin-left:auto; margin-right:auto; color:var(--white);">Enquanto você tenta aprender no improviso, quem domina processo já cobra de R$800 a R$2.000 por projeto — e usa a IA a favor, não contra.</h2>
+
+    <div class="price-box">
+      <div class="eyebrow" style="color:#c98ab6;">Oferta especial por tempo limitado</div>
+      <div class="old">de R$297</div>
+      <div class="now">R$67 <sup>à vista</sup></div>
+      <div class="installment">ou 12x de R$6,93</div>
+      <a href="https://pay.kiwify.com.br/yHGdEBA" class="cta">Garantir acesso imediato e vitalício →</a>
+      <ul class="guarantee-list">
+        <li>Acesso vitalício a todas as atualizações futuras</li>
+        <li>Figma do zero ao avançado</li>
+        <li>Desafios práticos em cada etapa da trilha</li>
+        <li>Comunidade tira-dúvidas no WhatsApp</li>
+        <li>Aulas bônus com profissionais renomados</li>
+        <li>Certificado de conclusão</li>
+        <li>Garantia de 7 dias ou seu dinheiro de volta</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:30px;">
+      <div class="eyebrow">Quem te guia na trilha</div>
+      <h2>Quem é Lari Tedeschi?</h2>
+    </div>
+    <div class="about-grid">
+      <img src="https://drive.google.com/thumbnail?id=1qPuipKO4zigenVf1afhS-YsHG8cYRMfK&sz=w900" alt="Lari Tedeschi">
+      <div>
+        <h3>Designer especialista em marcas</h3>
+        <p>Formada em Design Gráfico pela Unicuritiba e em Expressão Gráfica pela UFPR. Em 2021 começou a se especializar em Figma e percebeu que designers iniciantes ficavam presos entre ferramentas caras, excesso de informação e falta de direcionamento claro — foi aí que decidiu transformar esse caminho numa trilha guiada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap section-head">
+    <div class="eyebrow">Dúvidas</div>
+    <h2>Perguntas frequentes</h2>
+  </div>
+  <div class="wrap" style="max-width:640px;">
+    <details class="faq-item">
+      <summary>Preciso já saber usar o Figma?</summary>
+      <p>Não. A trilha começa do zero — inclusive o módulo de fundamentos foi pensado pra quem nunca abriu o Figma antes.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Preciso pagar o Figma?</summary>
+      <p>Não. Como o curso é verificado pelo Figma, você pode solicitar a licença educacional gratuita.</p>
+    </details>
+    <details class="faq-item">
+      <summary>E se eu não gostar do curso?</summary>
+      <p>Você tem 7 dias de garantia incondicional. Basta pedir o reembolso, sem burocracia.</p>
+    </details>
+    <details class="faq-item">
+      <summary>As aulas são gravadas?</summary>
+      <p>Sim, todas as aulas são gravadas e ficam disponíveis pra você assistir no seu ritmo, seguindo a ordem da trilha.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Por quanto tempo tenho acesso ao curso?</summary>
+      <p>Acesso vitalício, incluindo todas as atualizações futuras.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Vou receber certificado ao finalizar?</summary>
+      <p>Sim, certificado de conclusão disponível ao final da trilha.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Esse curso ensina a usar IA?</summary>
+      <p>Sim — a IA entra no fluxo como ferramenta dentro do processo, principalmente na etapa de refinamento, e você aprende o que pedir e o que corrigir.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Qual a diferença entre o FigLogo e o FigBrand?</summary>
+      <p>O FigLogo foca no processo de criação de logotipos. Fale com o suporte pra entender qual encaixa melhor no seu momento.</p>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--accent)">Daqui a 6 meses, a IA vai estar ainda mais avançada</div>
+    <h2>A pergunta é: você vai ser a designer que sabe usar ela a seu favor, ou quem ficou pra trás tentando competir?</h2>
+    <p>O processo é o que separa os dois. E você não precisa descobrir esse processo sozinha — a trilha já está pronta.</p>
+    <a href="https://pay.kiwify.com.br/yHGdEBA" class="cta">Entrar agora por R$67 à vista →</a>
+  </div>
+</section>
+
+<footer>
+  Lari Tedeschi Designer · <a href="https://wa.me/5541999401055">Fale com o suporte</a>
+</footer>
+
+</body>
+</html>
