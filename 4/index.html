@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FigLogo · Aprenda a criar logos profissionais do zero</title>
+<meta name="description" content="Aprenda a criar logos profissionais do zero e cobrar por eles, usando uma ferramenta gratuita. Curso verificado pelo Figma.">
+<style>
+@font-face{font-family:"Euclid";src:url("https://framerusercontent.com/assets/lckLNXmav5SRnkpI7xh7SvgI.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Euclid";src:url("https://framerusercontent.com/assets/qLOykwKsAoec44fnJ4ORg95tplI.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Euclid";src:url("https://framerusercontent.com/assets/PqhxH3vOnnM9m1fyMosmHfA4PUY.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Euclid";src:url("https://framerusercontent.com/assets/7qUgRwRXHjDk3qyGSv1lDMBIvs.woff2") format("woff2");font-weight:500;font-style:italic;font-display:swap}
+@font-face{font-family:"Euclid";src:url("https://framerusercontent.com/assets/hoeKROubFCIfmmvaHsEdp0L9Y.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Euclid";src:url("https://framerusercontent.com/assets/sI1dG3OBiGxOyxE98bBDF5KZIk.woff2") format("woff2");font-weight:600;font-style:italic;font-display:swap}
+@font-face{font-family:"Euclid";src:url("https://framerusercontent.com/assets/wmFlo8Ds1lA3SqktqmV7lYFHPk.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+:root{
+--ink:#181818;
+--gray:#666;
+--gray-2:#8a8a8a;
+--line:#ececec;
+--bg:#fcfcfc;
+--soft:#f6f6f6;
+--pink:#ff58fc;
+--pink-block:#f06ef2;
+--pink-tint:#fff0ff;
+--green-a:#7be05a;
+--green-b:#289c02;
+--red:#d93a3a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Euclid",Arial,sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 20px}
+.narrow{max-width:660px;margin:0 auto}
+.center{text-align:center}
+.pk{color:var(--pink)}
+section{padding:88px 0}
+h1,h2,h3{font-weight:600;letter-spacing:-.035em;line-height:1.1}
+h2{font-size:clamp(28px,4.2vw,40px)}
+h3{font-size:22px;letter-spacing:-.02em}
+p+p{margin-top:14px}
+.lead{color:var(--gray);font-size:17px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--pink)}
+/* botão verde, igual ao da página atual */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:#fff;font-weight:700;font-size:16.5px;letter-spacing:-.02em;padding:17px 30px;border-radius:10px;background:linear-gradient(180deg,var(--green-a) 0%,var(--green-b) 100%);box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 8px 20px -8px rgba(40,156,2,.55);transition:transform .15s ease,filter .15s ease}
+.btn:hover{transform:translateY(-2px);filter:saturate(1.1)}
+.btn .arr{font-size:18px;line-height:1}
+.micro{margin-top:12px;color:var(--gray-2);font-size:14px;font-weight:500;letter-spacing:-.02em}
+/* barra do topo */
+.topbar{background:var(--ink);color:#fff;font-size:13.5px;font-weight:500;text-align:center;padding:10px 16px;letter-spacing:-.01em}
+.topbar span{opacity:.5;margin:0 8px}
+/* hero */
+.hero{padding:34px 0 72px;text-align:center}
+.hero .logo{width:132px;margin:0 auto 22px}
+.hero .mock{width:min(470px,92%);margin:0 auto 30px}
+.hero h1{font-size:clamp(31px,5vw,46px);max-width:740px;margin:12px auto 0}
+.hero .sub{max-width:560px;margin:18px auto 0;color:var(--gray);font-size:17.5px}
+.hero .sub strong{color:var(--ink);font-weight:600}
+.hero .cta{margin-top:30px}
+.proof{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 18px;margin-top:22px;font-size:14.5px;font-weight:500;color:var(--gray);letter-spacing:-.02em}
+.proof .av{display:flex;align-items:center;gap:8px;color:var(--pink)}
+.proof .av img{height:26px;width:auto}
+.proof .dot{width:4px;height:4px;border-radius:50%;background:#cfcfcf}
+.proof .chk{display:flex;align-items:center;gap:6px}
+.proof svg{flex:none}
+/* problema */
+.problem{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.problem .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.problem h2 em{font-style:italic;font-weight:600}
+.callout{margin-top:22px;padding:18px 20px;border-left:3px solid var(--pink);background:var(--pink-tint);border-radius:0 12px 12px 0;font-weight:600;letter-spacing:-.02em;font-size:18px;line-height:1.35}
+.xlist{list-style:none;margin-top:6px}
+.xlist li{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px dashed #e4e4e4;font-weight:500;letter-spacing:-.015em}
+.xlist li:last-child{border-bottom:0}
+.xlist .x{flex:none;width:22px;height:22px;border-radius:50%;background:#ffe9e9;color:var(--red);display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:2px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px}
+.card-label{font-size:13px;font-weight:600;color:var(--gray-2);margin-bottom:4px;letter-spacing:-.01em}
+/* método PCRA */
+.method .intro{max-width:640px;margin:0 auto 46px;text-align:center}
+.method .intro h2{margin-bottom:16px}
+.pcra{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{position:relative;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 22px 26px}
+.step .ltr{width:48px;height:48px;border-radius:12px;background:var(--pink);color:#fff;font-weight:700;font-size:24px;display:grid;place-items:center;margin-bottom:18px}
+.step:nth-child(2) .ltr{background:var(--ink)}
+.step:nth-child(3) .ltr{background:#fff;color:var(--pink);border:2px solid var(--pink)}
+.step:nth-child(4) .ltr{background:var(--pink-tint);color:var(--ink)}
+.step h3{font-size:19px;margin-bottom:8px}
+.step p{color:var(--gray);font-size:15.5px;line-height:1.5}
+.step .n{position:absolute;top:22px;right:22px;font-size:12px;font-weight:600;color:#c4c4c4}
+/* antes e depois */
+.ba{background:var(--soft)}
+.ba .head{text-align:center;max-width:640px;margin:0 auto 40px}
+.ba .head p{margin-top:14px;color:var(--gray)}
+/* carrosséis IA x método */
+.lane{max-width:1040px;margin:0 auto}
+.lane-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
+.lane-head .lbl{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+.lane.ai .lbl{background:#ffe9e9;color:var(--red)}
+.lane.ok .lbl{background:var(--pink);color:#fff}
+.lane-head p{font-size:15px;color:var(--gray);margin-top:8px;max-width:520px}
+.nav{display:flex;gap:8px;flex:none}
+.nav button{width:42px;height:42px;border-radius:50%;border:1.5px solid #dcdcdc;background:#fff;cursor:pointer;display:grid;place-items:center;color:var(--ink);transition:border-color .15s,background .15s}
+.nav button:hover{border-color:var(--ink)}
+.lane.ok .nav button:hover{border-color:var(--pink);background:var(--pink-tint)}
+.car{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.car::-webkit-scrollbar{display:none}
+.car figure{flex:0 0 calc((100% - 42px)/4);scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px}
+.car img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:10px}
+.lane.ai figure{opacity:.92}
+.lane.ai img{filter:saturate(.85)}
+.lane.ok figure{border-color:#ffd2fe}
+.bridge{display:flex;align-items:center;justify-content:center;gap:14px;margin:34px 0;color:var(--gray);font-weight:600;font-size:15px;letter-spacing:-.01em}
+.bridge::before,.bridge::after{content:"";height:1px;flex:1;max-width:220px;background:#dedede}
+.bridge span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:9px 16px;border-radius:999px;color:var(--ink)}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;max-width:820px;margin:34px auto 0}
+.notes li{list-style:none;display:flex;gap:12px;font-size:15.5px;color:var(--gray)}
+.notes li b{color:var(--ink);font-weight:600}
+.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--pink);color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.punch{margin-top:38px;text-align:center;font-size:21px;letter-spacing:-.02em}
+.punch b{font-weight:600}
+/* figma pro (bloco rosa) */
+.figma{background:var(--pink-block);color:#fff;text-align:center}
+.figma img{width:120px;margin:0 auto 22px}
+.figma h2{max-width:560px;margin:0 auto}
+.figma .s{font-weight:600;font-size:19px;margin-top:14px}
+.figma p.t{max-width:540px;margin:14px auto 0;opacity:.92;font-size:16px}
+/* resultados */
+.results .head{text-align:center;max-width:700px;margin:0 auto 44px}
+.rgrid{columns:3;column-gap:18px}
+.res{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;break-inside:avoid;margin-bottom:18px;display:inline-block;width:100%}
+.res .txt{padding:18px 20px 20px}
+.res .who{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.res .who b{font-size:18px;font-weight:600;letter-spacing:-.02em}
+.res .big{display:inline-block;background:var(--pink-tint);color:#c21fc0;font-weight:600;font-size:13px;padding:3px 9px;border-radius:999px}
+.res p{font-size:15px;color:var(--gray);line-height:1.45}
+.res .print{background:var(--soft);padding:14px;border-top:1px solid var(--line)}
+.res .print img{width:100%;border-radius:8px}
+.gallery-t{text-align:center;margin:80px auto 30px;font-size:clamp(24px,3vw,32px);font-weight:600;letter-spacing:-.03em;line-height:1.15}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.track{display:flex;gap:18px;width:max-content;animation:slide 90s linear infinite}
+.track img{width:440px;height:440px;object-fit:cover;border-radius:20px;box-shadow:0 18px 40px -24px rgba(0,0,0,.35)}
+.dots{display:none}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marquee:hover .track{animation-play-state:paused}
+/* bullets por etapa */
+.learn{background:#fff;border-top:1px solid var(--line)}
+.learn .head{max-width:640px;margin:0 auto 46px;text-align:center}
+.learn .head p{margin-top:12px;color:var(--gray)}
+.stage{display:grid;grid-template-columns:220px 1fr;gap:30px;padding:30px 0;border-top:1px solid var(--line)}
+.stage:last-child{border-bottom:1px solid var(--line)}
+.stage .lbl{display:flex;gap:12px;align-items:center;align-self:start;position:sticky;top:20px}
+.stage .lbl .ltr{width:40px;height:40px;border-radius:10px;background:var(--pink);color:#fff;font-weight:700;font-size:19px;display:grid;place-items:center}
+.stage .lbl span{font-weight:600;font-size:18px;letter-spacing:-.02em}
+.stage ul{list-style:none;display:grid;gap:14px}
+.stage li{position:relative;padding-left:22px;font-size:16.5px;line-height:1.5}
+.stage li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--pink);transform:rotate(45deg)}
+/* para quem é */
+.who-for .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.who-for h2 .pk{display:block}
+.no{list-style:none;margin-top:6px}
+.no li{padding:10px 0;font-weight:500;display:flex;gap:10px;align-items:center;letter-spacing:-.015em}
+.no li .x{width:20px;height:20px;border-radius:50%;background:#ffe9e9;color:var(--red);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.who-for .end{margin-top:20px;font-size:19px;font-weight:600;letter-spacing:-.02em}
+.who-for .end span{display:block;color:var(--gray);font-weight:500;font-size:17px;margin-top:2px}
+/* sem x com */
+.vs{background:var(--soft)}
+.vs .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:820px;margin:0 auto}
+.pill{display:inline-block;padding:9px 16px;border-radius:10px;font-weight:600;font-size:15px;color:#fff;margin-bottom:18px}
+.pill.dark{background:#454545}
+.pill.pink{background:var(--pink)}
+.vs ul{list-style:none}
+.vs li{padding:9px 0;font-size:15.5px;display:flex;gap:10px;font-weight:500;letter-spacing:-.015em}
+.vs li i{font-style:normal;flex:none}
+/* custo */
+.cost{text-align:center}
+.cost .narrow>p{color:var(--gray)}
+.compare{margin:30px auto 0;max-width:560px;text-align:left}
+.compare .row{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px}
+.compare .row b{font-weight:600;white-space:nowrap}
+.compare .row.fig{border-bottom:0;padding:18px 18px;margin-top:10px;background:var(--pink-tint);border-radius:12px}
+.compare .row.fig b{color:#c21fc0;white-space:normal}
+/* oferta */
+.offer{background:#4a0b48;background-image:radial-gradient(circle at 50% 0%,#6e1a6b 0%,rgba(110,26,107,0) 60%);color:#fff;padding:96px 0}
+.offer .box{max-width:620px;margin:0 auto;background:#fff;color:var(--ink);border-radius:24px;padding:40px 38px;box-shadow:0 30px 60px -30px rgba(30,0,30,.7)}
+.offer h2{font-size:28px;margin-bottom:20px}
+.inc{list-style:none}
+.inc li{display:flex;gap:12px;padding:9px 0;font-weight:500;letter-spacing:-.015em;font-size:16px}
+.inc li svg{flex:none;margin-top:2px}
+.divider{height:1px;background:var(--line);margin:28px 0}
+.guarantee{padding:80px 0 20px}
+.guar{max-width:760px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
+.guar img{width:200px;border-radius:24px}
+.guar h2{margin-bottom:14px}
+.guar p{color:var(--gray)}
+.price{text-align:center}
+.price .de{color:var(--gray-2);font-size:16px}
+.price .de s{text-decoration-thickness:2px;text-decoration-color:var(--red)}
+.price .unico{display:inline-block;margin:14px 0 8px;background:var(--pink);color:#fff;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:999px}
+.price .val{color:#2f9e0c;font-size:104px;font-weight:700;letter-spacing:-.06em;line-height:.95;margin:4px 0 2px}
+.price .val small{font-size:32px;font-weight:600;letter-spacing:-.02em;vertical-align:top;position:relative;top:14px;margin-right:6px}
+.price .avista{font-size:22px;font-weight:600;letter-spacing:-.02em;color:#2f9e0c}
+.price .parc{color:var(--gray);font-size:15px;margin-top:10px}
+.price .btn{width:100%;margin-top:24px;font-size:17.5px;padding:19px 20px}
+.secure{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:14px;font-size:13.5px;color:var(--gray-2);font-weight:500}
+.offer .title-out{text-align:center;margin-bottom:34px}
+.offer .title-out p{opacity:.7;margin-top:10px}
+/* como comprar */
+.how{padding-top:72px;padding-bottom:40px}
+.how .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.how .s{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.how .s .num{margin-bottom:14px}
+.how .s p{font-size:15.5px;color:var(--gray)}
+.how .s p b{color:var(--ink);font-weight:600}
+/* fechamento */
+.close{text-align:center;padding-top:60px}
+.close h2{max-width:700px;margin:0 auto}
+.close p{max-width:540px;margin:16px auto 28px;color:var(--gray)}
+/* lari */
+.about{background:#fff;border-top:1px solid var(--line)}
+.about .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.about img{border-radius:20px;width:100%;max-width:360px}
+.about h2{margin-bottom:18px}
+.about p{color:var(--gray)}
+.about p:first-of-type{color:var(--ink);font-weight:500}
+/* faq */
+.faq .list{max-width:720px;margin:36px auto 0}
+.faq details{border-bottom:1px solid var(--line);padding:20px 0}
+.faq summary{cursor:pointer;list-style:none;font-weight:600;font-size:17.5px;letter-spacing:-.02em;display:flex;justify-content:space-between;gap:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--pink);font-size:24px;line-height:1;font-weight:500;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin-top:10px;color:var(--gray);font-size:16px;max-width:640px}
+.support{text-align:center;margin-top:46px}
+.support p{font-weight:600;font-size:19px;letter-spacing:-.02em;margin-bottom:14px}
+.support a{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:10px;border:1.5px solid var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+footer{padding:36px 20px 90px;text-align:center;font-size:13px;color:var(--gray-2)}
+.wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#6ad348;display:grid;place-items:center;box-shadow:0 8px 22px -6px rgba(0,0,0,.35);z-index:20}
+/* animação de entrada (só com JS) */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:900px){
+section{padding:68px 0}
+.problem .grid,.who-for .grid,.about .grid{grid-template-columns:1fr;gap:34px}
+.pcra{grid-template-columns:1fr 1fr}
+.rgrid{columns:2}
+.stage{grid-template-columns:1fr;gap:16px}
+.stage .lbl{position:static}
+.about img{max-width:300px;margin:0 auto}
+.car figure{flex-basis:calc((100% - 28px)/3)}
+}
+@media (max-width:620px){
+body{font-size:16px}
+.topbar{font-size:12px}
+.topbar .hide-sm{display:none}
+.hero{padding-top:26px}
+.proof{gap:6px 14px}
+.proof .dot{display:none}
+.btn{width:100%;padding:17px 18px}
+.pcra{grid-template-columns:1fr}
+.car figure{flex-basis:72%}
+.lane-head .nav{display:none}
+.notes{grid-template-columns:1fr}
+.rgrid{columns:1}
+.compare .row.fig{flex-direction:column;gap:4px}
+.vs .cols{grid-template-columns:1fr}
+.how .steps{grid-template-columns:1fr}
+.offer .box{padding:30px 22px;border-radius:20px}
+.guar{grid-template-columns:1fr;gap:20px;text-align:center}
+.guar img{width:150px;margin:0 auto}
+.price .val{font-size:84px}
+.compare .row{font-size:15px}
+/* galeria: uma imagem por vez no celular */
+.marquee{mask-image:none;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 20px}
+.marquee::-webkit-scrollbar{display:none}
+.track{animation:none;gap:12px}
+.track img{width:calc(100vw - 40px);height:calc(100vw - 40px);scroll-snap-align:center;border-radius:18px}
+.track img[aria-hidden]{display:none}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:16px}
+.dots i{width:7px;height:7px;border-radius:50%;background:#ddd;transition:all .25s}
+.dots i.on{width:20px;border-radius:4px;background:var(--pink)}
+}
+@media (prefers-reduced-motion:reduce){.track{animation:none}.js .rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<div class="topbar">🔥 Acesso vitalício<span>·</span>Garantia de 7 dias<span class="hide-sm">·</span><span class="hide-sm" style="opacity:1;margin:0">Curso verificado pelo Figma</span></div>
+<header class="hero">
+<div class="wrap">
+<img class="logo" src="https://framerusercontent.com/images/B30DJruXa7NAglGMMIDMOTTmoJc.png?scale-down-to=512" alt="FigLogo">
+<img class="mock" src="https://framerusercontent.com/images/yAxMkRziQSaIKrq4kFLGnVcywA.png?scale-down-to=1024" alt="Logo sendo construído no Figma">
+<span class="eyebrow">Curso verificado pelo Figma</span>
+<h1>Aprenda a criar logos profissionais do zero <span class="pk">e cobrar por eles,</span> usando uma ferramenta gratuita.</h1>
+<p class="sub">Você não precisa saber desenhar, ter portfólio nem pagar software. Precisa de um processo. <strong>Foi ele que a Quesia usou para sair de R$150 para mais de R$1.000 por projeto.</strong></p>
+<div class="cta">
+<a class="btn" href="#oferta">Quero aprender a criar logos <span class="arr">↓</span></a>
+<p class="micro">Acesso vitalício &nbsp;•&nbsp; Garantia de 7 dias</p>
+</div>
+<div class="proof">
+<span class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="#ff58fc"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>Curso verificado pelo Figma</span>
+<span class="dot"></span>
+<span>Licença Pro gratuita para alunas</span>
+<span class="dot"></span>
+<span class="av"><img src="https://framerusercontent.com/images/SQ4yLeYZ60qTb0bUkWQkLVtsBw.png" alt="">+800 alunas</span>
+</div>
+</div>
+</header>
+<section class="problem">
+<div class="wrap grid">
+<div class="rv">
+<h2>Todo mundo está olhando para o <em class="pk">lugar errado</em> quando diz que a IA vai substituir designers.</h2>
+<p class="lead" style="margin-top:18px">Hoje qualquer cliente gera centenas de logos, paletas e estilos em poucos minutos. O problema é que ter muitas opções não significa saber qual delas representa a marca.</p>
+<p class="callout">O designer que vai ser substituído não é o que usa IA. É o que nunca aprendeu processo.</p>
+</div>
+<div class="card rv">
+<p class="card-label">É o designer que:</p>
+<ul class="xlist">
+<li><span class="x">✕</span>Cria no improviso, testando ideias até algo parecer bonito</li>
+<li><span class="x">✕</span>Não sabe conduzir um briefing e espera o cliente dizer o que quer</li>
+<li><span class="x">✕</span>Copia referências sem entender o porquê de cada decisão</li>
+<li><span class="x">✕</span>Entrega arquivo solto por e-mail e torce para o cliente gostar</li>
+<li><span class="x">✕</span>Não consegue explicar por que fez o que fez</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="method">
+<div class="wrap">
+<div class="intro rv">
+<h2>Quando você domina o processo, a IA vira a ferramenta mais poderosa do seu arsenal.</h2>
+<p class="lead">Você sabe o que pedir para ela, o que ajustar e o que jogar fora. É isso que o FigLogo ensina, por meio do <b style="color:var(--ink)">Método PCRA</b>:</p>
+</div>
+<div class="pcra">
+<div class="step rv"><span class="n">01</span><div class="ltr">P</div><h3>Pesquisa</h3><p>O briefing e a análise de referências que te dizem o que a marca precisa antes de desenhar qualquer coisa.</p></div>
+<div class="step rv"><span class="n">02</span><div class="ltr">C</div><h3>Conceito</h3><p>Transformar o briefing em direções criativas com intenção, não em tentativa e erro.</p></div>
+<div class="step rv"><span class="n">03</span><div class="ltr">R</div><h3>Refinamento</h3><p>Grid, proporção, tipografia e kerning. Os detalhes que fazem um logo parecer de agência.</p></div>
+<div class="step rv"><span class="n">04</span><div class="ltr">A</div><h3>Apresentação</h3><p>Mockups, arquivos e a apresentação que faz o cliente aprovar e valorizar o trabalho.</p></div>
+</div>
+</div>
+</section>
+<section class="ba">
+<div class="wrap">
+<div class="head rv">
+<h2>O mesmo ponto de partida. Dois resultados.</h2>
+<p>Em cima, o que a IA entrega quando você só pede um logo. Embaixo, o que dá pra construir quando existe processo por trás.</p>
+</div>
+<div class="lane ai rv">
+<div class="lane-head">
+<div><span class="lbl">O que a IA entrega</span><p>Logos gerados por IA a partir de um pedido simples. Bonitos à primeira vista, mas genéricos.</p></div>
+<div class="nav"><button type="button" data-dir="-1" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-dir="1" aria-label="Próximo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+</div>
+<div class="car">
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 1" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 2" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 3" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 4" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 5" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 6" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 7" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/pVcuaPaJipuU8BgB8pXnPRjcAOI.jpg?scale-down-to=512" alt="Logo gerado por IA 8" loading="lazy"></figure>
+</div>
+</div>
+<div class="bridge rv"><span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff58fc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>+ Método PCRA</span></div>
+<div class="lane ok rv">
+<div class="lane-head">
+<div><span class="lbl">O que dá pra construir com o método</span><p>Projetos de verdade, com conceito, grid, tipografia ajustada e versões prontas para o cliente usar.</p></div>
+<div class="nav"><button type="button" data-dir="-1" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" data-dir="1" aria-label="Próximo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
+</div>
+<div class="car">
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 1" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 2" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 3" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 4" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 5" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 6" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 7" loading="lazy"></figure>
+<figure><img src="https://framerusercontent.com/images/fl7CbJCYLjWr7yxDV5xGgQchyXA.png?scale-down-to=1024" alt="Projeto criado com o Método PCRA 8" loading="lazy"></figure>
+</div>
+</div>
+<p class="card-label rv" style="text-align:center;margin:44px 0 18px;font-size:15px">O que muda de um para o outro:</p>
+<ul class="notes rv" style="margin-top:0">
+<li><span class="num">1</span><span><b>Conceito:</b> o símbolo passou a contar a história da marca, em vez de ser só um desenho bonito.</span></li>
+<li><span class="num">2</span><span><b>Grid e proporção:</b> o símbolo foi reconstruído em grid e agora funciona do ícone de 16px à fachada.</span></li>
+<li><span class="num">3</span><span><b>Tipografia e kerning:</b> espaçamento ajustado à mão; o nome parou de parecer "fonte digitada".</span></li>
+<li><span class="num">4</span><span><b>Versões:</b> horizontal, vertical, monocromática e ícone. O pacote que o cliente precisa para usar de verdade.</span></li>
+</ul>
+<p class="punch rv">A IA te dá o ponto de partida. <b>O processo é o que o cliente paga.</b></p>
+</div>
+</section>
+<section class="figma">
+<div class="wrap rv">
+<img src="https://framerusercontent.com/images/uDo2iIiW3XUG65P2eBXz7NzaGI4.png?scale-down-to=512" alt="Figma verificado">
+<h2>Aprenda no Figma Pro, sem pagar por uma licença.</h2>
+<p class="s">Nosso curso é verificado pelo Figma!</p>
+<p class="t">Então você pode solicitar a licença educacional e ter acesso gratuito às funcionalidades profissionais da plataforma. É a oportunidade de aprender em uma das ferramentas mais usadas pelo mercado, sem precisar investir em softwares caros.</p>
+</div>
+</section>
+<section class="results">
+<div class="wrap">
+<div class="head rv">
+<h2>Elas não ficaram "mais criativas" da noite para o dia. <span class="pk">Elas aprenderam o processo.</span></h2>
+</div>
+<div class="rgrid">
+<article class="res rv">
+<div class="txt"><div class="who"><b>Quesia</b></div><span class="big">R$150 → +R$1.000 por projeto</span></div>
+<div class="print"><img src="https://framerusercontent.com/images/zXRTje0tnFe5INgP0lJgQYgD86A.png?scale-down-to=1024" alt="Depoimento da Quesia"></div>
+</article>
+<article class="res rv">
+<div class="txt"><div class="who"><b>Julia</b></div><span class="big">R$200 → R$2.000 por projeto</span><p style="margin-top:8px">Por projeto de identidade visual.</p></div>
+<div class="print"><img src="https://framerusercontent.com/images/cEOfkTulj5JxA9Arsq67KfACKtk.png?scale-down-to=1024" alt="Depoimento da Julia"></div>
+</article>
+<article class="res rv">
+<div class="txt"><div class="who"><b>Bea</b></div><p>Aprendeu a metodologia começando do zero, sem nunca ter usado o Figma.</p></div>
+<div class="print"><img src="https://framerusercontent.com/images/SOxju70KbkgDFKUJok6V9cqT4.png?scale-down-to=1024" alt="Depoimento da Bea"></div>
+</article>
+<article class="res rv">
+<div class="txt"><div class="who"><b>Gioh</b></div><p>Criou o primeiro logo com os desafios do curso.</p></div>
+<div class="print"><img src="https://framerusercontent.com/images/91qHzviLr0gBg0N56T5IbVJiEs8.png?scale-down-to=1024" alt="Depoimento da Gioh"></div>
+</article>
+<article class="res rv">
+<div class="txt"><div class="who"><b>Rapha e Andressa</b></div><p>Mais segurança no processo criativo.</p></div>
+<div class="print"><img src="https://framerusercontent.com/images/VoBl2f6r2IMVxpXhZ4SoIgShc.png?scale-down-to=1024" alt="Depoimento da Rapha" style="margin-bottom:10px"><img src="https://framerusercontent.com/images/oZo7ijxrtAmch7dY1vcPtC0DgCU.png?scale-down-to=1024" alt="Depoimento da Andressa"></div>
+</article>
+</div>
+<p class="gallery-t rv">Olha só o que elas estão criando:</p>
+</div>
+<div class="marquee">
+<div class="track">
+<img src="https://framerusercontent.com/images/az9qJXyC3fehBNaAb1Ba67cOQ7Y.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/4J2uVN0cK7PkjjGrBmSlLCQP1k.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/BYE4t8zsuG7c3r0uz6VXPR951Mg.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/srRgcvceFwUAgQdou5xQ6Jqk.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/JIiHZGa4hx0YxrzWXU3GoltGOec.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/HJB7K1eE6BXg2nwKEVkGwgBjgA.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/UxGizu0g40ck8RcPbGO1mP5kNMI.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/GWbInzYmIxBvBfJye6wUcqRw4.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/Z5ZVaHayOshle3DHX40WYLjAHA.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/5N1ocKuQa1yVNfnTVJkOiuBVOM8.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/C0wre8k8qSihDtuW97HLmRLmdc.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/roQBVe30ioufgMeetoRxF7k.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/D0yNnQJhDVtInbz3SlWkvzlQWo.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/XnqJdKpaHzjXNWPVX8R2q2wKw.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/oZyFuSMJhul3CCNveauIJiScEg.png?scale-down-to=1024" alt="">
+<img src="https://framerusercontent.com/images/az9qJXyC3fehBNaAb1Ba67cOQ7Y.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/4J2uVN0cK7PkjjGrBmSlLCQP1k.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/BYE4t8zsuG7c3r0uz6VXPR951Mg.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/srRgcvceFwUAgQdou5xQ6Jqk.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/JIiHZGa4hx0YxrzWXU3GoltGOec.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/HJB7K1eE6BXg2nwKEVkGwgBjgA.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/UxGizu0g40ck8RcPbGO1mP5kNMI.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/GWbInzYmIxBvBfJye6wUcqRw4.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/Z5ZVaHayOshle3DHX40WYLjAHA.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/5N1ocKuQa1yVNfnTVJkOiuBVOM8.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/C0wre8k8qSihDtuW97HLmRLmdc.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/roQBVe30ioufgMeetoRxF7k.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/D0yNnQJhDVtInbz3SlWkvzlQWo.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/XnqJdKpaHzjXNWPVX8R2q2wKw.png?scale-down-to=1024" alt="" aria-hidden="true">
+<img src="https://framerusercontent.com/images/oZyFuSMJhul3CCNveauIJiScEg.png?scale-down-to=1024" alt="" aria-hidden="true">
+</div>
+</div>
+<div class="dots" aria-hidden="true"></div>
+<div class="wrap center" style="margin-top:44px">
+<a class="btn" href="#oferta">Quero os mesmos resultados <span class="arr">↓</span></a>
+</div>
+</section>
+<section class="learn">
+<div class="wrap">
+<div class="head rv">
+<span class="eyebrow">O que tem dentro</span>
+<h2 style="margin-top:10px">Cada etapa do método, aula por aula.</h2>
+</div>
+<div class="stage rv">
+<div class="lbl"><div class="ltr">P</div><span>Pesquisa</span></div>
+<ul>
+<li>As perguntas de briefing que fazem o cliente te dizer o que ele quer, mesmo quando ele ainda não sabe.</li>
+<li>Como analisar referências para usar a ideia sem copiar o logo, e nunca mais ouvir "isso parece com tal marca".</li>
+<li>Os princípios de Gestalt que explicam por que alguns logos "funcionam" e outros parecem amadores, e como aplicar no seu.</li>
+</ul>
+</div>
+<div class="stage rv">
+<div class="lbl"><div class="ltr">C</div><span>Conceito</span></div>
+<ul>
+<li>Como transformar um briefing em três direções criativas antes de abrir o Figma, e por que isso acaba com o "não gostei, faz outro".</li>
+<li>Como pegar um logo gerado pela IA e saber exatamente o que manter, o que ajustar e o que jogar fora.</li>
+</ul>
+</div>
+<div class="stage rv">
+<div class="lbl"><div class="ltr">R</div><span>Refinamento</span></div>
+<ul>
+<li>Grid e proporção na prática: como construir um símbolo que fica bom no ícone do Instagram e na fachada da loja.</li>
+<li>A pen tool do Figma do jeito certo: vetores limpos, sem nós sobrando, prontos para qualquer gráfica.</li>
+<li>O ajuste de kerning que leva minutos e faz o logotipo parar de parecer "fonte digitada".</li>
+<li>O checklist de revisão antes de mostrar ao cliente. É o que separa o "tá bom" do "tá pronto".</li>
+</ul>
+</div>
+<div class="stage rv">
+<div class="lbl"><div class="ltr">A</div><span>Apresentação</span></div>
+<ul>
+<li>Como montar a apresentação da marca com mockups que fazem o cliente enxergar o logo aplicado e aprovar com menos rodadas de ajuste.</li>
+<li>O pacote de entrega profissional: quais arquivos exportar, em que formatos e como organizar, para o cliente nunca mais pedir "manda em PNG sem fundo".</li>
+<li>Como explicar cada decisão para o cliente, que é o que justifica cobrar R$800 em vez de R$150.</li>
+</ul>
+</div>
+<div class="stage rv">
+<div class="lbl"><div class="ltr" style="background:var(--ink)">+</div><span>Prática</span></div>
+<ul>
+<li>Desafios práticos para você sair do curso com logos prontos para o portfólio, mesmo começando sem nenhum.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="who-for">
+<div class="wrap grid">
+<div class="rv">
+<p class="lead" style="margin-bottom:10px">"Mas eu tô começando do zero. Isso é pra mim?"</p>
+<h2>Você não precisa ser <span class="pk">"o designer perfeito"</span> pra começar.</h2>
+<p class="lead" style="margin-top:16px">O FigLogo foi criado pra quem ainda está aprendendo!</p>
+</div>
+<div class="card rv">
+<p class="card-label">Então você não precisa:</p>
+<ul class="no">
+<li><span class="x">✕</span>dominar o Figma</li>
+<li><span class="x">✕</span>ter experiência profissional</li>
+<li><span class="x">✕</span>saber desenhar</li>
+<li><span class="x">✕</span>ter um portfólio incrível</li>
+<li><span class="x">✕</span>usar softwares caros</li>
+<li><span class="x">✕</span>ou ser extremamente criativo</li>
+</ul>
+<p class="end">Você só precisa aprender o processo certo! <span>O resto é construção.</span></p>
+</div>
+</div>
+</section>
+<section class="vs">
+<div class="wrap">
+<div class="cols">
+<div class="card rv">
+<span class="pill dark">SEM FIGLOGO</span>
+<ul>
+<li><i>❌</i>Se sentir inseguro na criação</li>
+<li><i>❌</i>Copiar referências sem entender</li>
+<li><i>❌</i>Travar em cada projeto</li>
+<li><i>❌</i>Criar "no feeling"</li>
+<li><i>❌</i>Sentir que nada parece profissional</li>
+<li><i>❌</i>Não saber criar nem mesmo com IA</li>
+</ul>
+</div>
+<div class="card rv" style="border-color:#ffc9fe">
+<span class="pill pink">COM FIGLOGO</span>
+<ul>
+<li><i>✅</i>Saber como começar uma criação</li>
+<li><i>✅</i>Construir logos com mais clareza</li>
+<li><i>✅</i>Entender o raciocínio por trás do design</li>
+<li><i>✅</i>Ter as técnicas para criar qualquer logo</li>
+<li><i>✅</i>Criar com mais segurança e direção</li>
+<li><i>✅</i>Saber a direção mesmo usando IA</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="cost">
+<div class="wrap">
+<div class="narrow rv">
+<h2>Quanto custa continuar <span class="pk">sem processo?</span></h2>
+<p style="margin-top:16px">Enquanto você aprende no improviso, designers que dominam processo já estão cobrando de R$800 a R$2.000 por projeto, usando a IA a favor deles.</p>
+<div class="compare">
+<p class="card-label" style="margin-bottom:4px">Para comparar:</p>
+<div class="row"><span>Consultoria individual com uma designer especialista</span><b>R$800 a R$2.000</b></div>
+<div class="row"><span>Um curso avulso de Figma, sem o processo de criação de marca</span><b>R$200 a R$400</b></div>
+<div class="row fig"><span>O FigLogo entrega o processo completo, do briefing às técnicas de Figma</span><b>pagamento único, acesso para sempre</b></div>
+</div>
+</div>
+</div>
+</section>
+<section class="offer" id="oferta">
+<div class="wrap">
+<div class="title-out rv">
+<h2>Tudo pronto pra você começar hoje.</h2>
+</div>
+<div class="box rv">
+<h2>Tudo o que você recebe hoje:</h2>
+<ul class="inc">
+<li><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#43a100"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Acesso vitalício ao FigLogo, com todas as atualizações futuras</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#43a100"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Figma do zero ao avançado</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#43a100"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Método PCRA completo: pesquisa, conceito, refinamento e apresentação</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#43a100"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Desafios práticos para montar o seu portfólio</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#43a100"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Comunidade de dúvidas no WhatsApp</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#43a100"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Aulas bônus com profissionais convidados</li>
+<li><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#43a100"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Certificado de conclusão</li>
+</ul>
+<div class="divider"></div>
+<div class="price">
+<p class="de">De <s>R$297</s> por</p>
+<span class="unico">Pagamento único</span>
+<p class="val"><small>R$</small>67</p>
+<p class="avista">à vista</p>
+<p class="parc">ou em até 12x de R$6,93 no cartão · sem mensalidade, acesso para sempre</p>
+<a class="btn" href="https://pay.kiwify.com.br/yHGdEBA">Quero entrar no FigLogo agora</a>
+<div class="secure"><span>🔒 Pagamento seguro</span><span>•</span><span>Pix ou cartão</span><span>•</span><span>Acesso imediato por e-mail</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="guarantee">
+<div class="wrap">
+<div class="guar rv">
+<img src="https://framerusercontent.com/images/Wu5XkqZdV7jRMT6SeDD3gGU6U.png" alt="Garantia de 7 dias">
+<div>
+<h2>Você tem 7 dias para decidir <span class="pk">sem risco.</span></h2>
+<p>Entre, assista às aulas e explore a plataforma. Se sentir que o FigLogo não é para você, peça o reembolso em até 7 dias e devolvemos 100% do valor, sem pergunta e sem burocracia.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="how">
+<div class="wrap">
+<h3 class="center rv" style="font-size:26px">É simples:</h3>
+<div class="steps">
+<div class="s rv"><span class="num">1</span><p><b>Clique no botão acima</b> e preencha nome, e-mail e forma de pagamento.</p></div>
+<div class="s rv"><span class="num">2</span><p><b>No Pix, o QR Code aparece na hora.</b> Pague pelo app do banco e o acesso é liberado em segundos.</p></div>
+<div class="s rv"><span class="num">3</span><p><b>Você recebe o login da área de membros no e-mail na hora.</b> Se não achar, olhe na caixa de spam ou promoções.</p></div>
+</div>
+</div>
+</section>
+<section class="close">
+<div class="wrap rv">
+<h2>Daqui a 6 meses, a IA vai estar ainda mais avançada.</h2>
+<p>A pergunta é se você vai estar do lado de quem só aperta o botão, ou de quem sabe o que fazer com o que ela entrega.</p>
+<a class="btn" href="https://pay.kiwify.com.br/yHGdEBA">Quero entrar no FigLogo agora</a>
+<p class="micro">Acesso vitalício &nbsp;•&nbsp; Garantia de 7 dias</p>
+</div>
+</section>
+<section class="about">
+<div class="wrap grid">
+<img class="rv" src="https://framerusercontent.com/images/sGi8noFHclJUQZpeciDX2c1AZI.png?scale-down-to=1024" alt="Lari Tedeschi">
+<div class="rv">
+<h2>Quem é <span class="pk">Lari Tedeschi?</span></h2>
+<p>Lari Tedeschi é designer especialista em marcas, formada em Design Gráfico pela Unicuritiba e em Expressão Gráfica pela Universidade Federal do Paraná.</p>
+<p>Em 2021, começou a se especializar no Figma e percebeu algo importante: muitos designers iniciantes queriam evoluir profissionalmente, mas acabavam presos entre ferramentas caras, excesso de informação e falta de direcionamento claro.</p>
+<p>Desde então, Lari vem compartilhando seu conhecimento para ajudar designers a criarem logotipos e identidades visuais de forma mais acessível, estratégica e profissional usando o Figma, uma ferramenta poderosa e acessível para quem está começando.</p>
+</div>
+</div>
+</section>
+<section class="faq">
+<div class="wrap">
+<h2 class="center rv">Dúvidas frequentes</h2>
+<div class="list">
+<details open><summary>Preciso já saber usar o Figma?</summary><p>Não. O curso começa do zero, da instalação às ferramentas avançadas.</p></details>
+<details open><summary>Preciso pagar o Figma?</summary><p>Não. O curso é verificado pelo Figma, então você pode pedir a licença educacional e usar as funções Pro de graça.</p></details>
+<details open><summary>E se eu não gostar do curso?</summary><p>Você tem 7 dias de garantia. Peça o reembolso e devolvemos 100% do valor.</p></details>
+<details open><summary>As aulas são gravadas?</summary><p>Sim. Você assiste quando e quantas vezes quiser.</p></details>
+<details open><summary>Por quanto tempo tenho acesso?</summary><p>Para sempre, com todas as atualizações futuras incluídas.</p></details>
+<details open><summary>Vou receber certificado?</summary><p>Sim. Ao concluir o curso você recebe o certificado.</p></details>
+<details open><summary>Esse curso ensina a usar IA?</summary><p>O foco é o processo de criação de marca, e é justamente ele que te faz usar a IA bem: você aprende a direcionar, avaliar e refinar o que a IA gera.</p></details>
+<details open><summary>Qual a diferença entre o FigLogo e o FigBrand?</summary><p>O FigLogo é o processo de criação do logo. O FigBrand vai além: identidade visual completa, com mentoria. Se você está começando, o FigLogo é o primeiro passo.</p></details>
+</div>
+<div class="support rv">
+<p>Ainda ficou com dúvida?</p>
+<a href="https://wa.me/5541999401055" target="_blank" rel="noopener">Fale com o suporte no WhatsApp →</a>
+</div>
+</div>
+</section>
+<footer>© Lari Tedeschi · FigLogo</footer>
+<a class="wa" href="https://wa.me/5541999401055" target="_blank" rel="noopener" aria-label="WhatsApp">
+<svg width="28" height="28" viewBox="0 0 20 20" fill="#fff"><path d="M17.085 2.91A9.9 9.9 0 0 0 10.04 0C4.553 0 .08 4.45.08 9.91c0 1.75.463 3.45 1.327 4.95L0 20l5.276-1.38a9.970 9.970 0 0 0 4.764 1.21C15.528 19.830 20 15.380 20 9.920c0-2.650-1.035-5.140-2.915-7.010zM10.04 18.150a8.300 8.300 0 0 1-4.221-1.150l-.301-.180-3.136.820.834-3.040-.201-.310a8.200 8.200 0 0 1-1.266-4.380c0-4.540 3.718-8.240 8.281-8.240 2.211 0 4.292.860 5.849 2.420a8.150 8.150 0 0 1 2.423 5.830c.020 4.540-3.699 8.230-8.262 8.230zm4.543-6.160c-.251-.120-1.477-.720-1.699-.810-.231-.080-.392-.120-.562.120-.171.250-.644.810-.784.970-.141.170-.292.190-.543.060-.251-.120-1.055-.390-2-1.230-.744-.660-1.236-1.470-1.387-1.720-.141-.250-.020-.380.111-.510.110-.110.251-.290.371-.430.121-.140.171-.250.252-.410.080-.170.040-.310-.020-.430-.061-.120-.563-1.340-.764-1.840-.201-.480-.412-.420-.563-.430h-.482c-.171 0-.433.060-.664.310-.221.250-.864.850-.864 2.070s.894 2.400 1.015 2.560c.121.170 1.759 2.670 4.251 3.740.593.260 1.056.410 1.417.520.593.190 1.136.160 1.568.100.483-.070 1.478-.600 1.679-1.180.211-.580.211-1.070.140-1.180-.070-.110-.221-.160-.472-.280z"/></svg>
+</a>
+<script>
+document.documentElement.classList.add('js');
+(function(){
+var els=document.querySelectorAll('.rv');
+if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+var io=new IntersectionObserver(function(entries){
+entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+els.forEach(function(e){io.observe(e)});
+})();
+(function(){
+document.querySelectorAll('.lane').forEach(function(l){
+var c=l.querySelector('.car');
+l.querySelectorAll('.nav button').forEach(function(b){
+b.addEventListener('click',function(){var f=c.querySelector('figure');var step=f?f.getBoundingClientRect().width+14:300;c.scrollBy({left:step*(+b.dataset.dir),behavior:'smooth'});});
+});
+});
+})();
+(function(){
+var m=document.querySelector('.marquee'),dots=document.querySelector('.dots');
+if(!m||!dots)return;
+var imgs=[].slice.call(m.querySelectorAll('.track img:not([aria-hidden])'));
+imgs.forEach(function(){dots.appendChild(document.createElement('i'))});
+var ds=dots.children,i=0,timer;
+function mobile(){return window.matchMedia('(max-width:620px)').matches}
+function mark(n){for(var k=0;k<ds.length;k++)ds[k].className=k===n?'on':''}
+function go(n){i=(n+imgs.length)%imgs.length;m.scrollTo({left:imgs[i].offsetLeft-20,behavior:'smooth'});mark(i)}
+function start(){clearInterval(timer);if(mobile())timer=setInterval(function(){go(i+1)},3000)}
+m.addEventListener('scroll',function(){if(!mobile())return;var w=imgs[0].offsetWidth+12;var n=Math.round(m.scrollLeft/w);if(n!==i){i=n;mark(i)}},{passive:true});
+m.addEventListener('touchstart',function(){clearInterval(timer)},{passive:true});
+m.addEventListener('touchend',function(){setTimeout(start,4000)},{passive:true});
+mark(0);start();window.addEventListener('resize',start);
+})();
+</script>
+</body>
+</html>
